@@ -96,6 +96,7 @@ public class Decipher{
 		
 		for(char letter : charsInMessage){
 			encryptedMessage = encryptedMessage.append(formula((int) letter));
+			//Add spaces between numbers
 		}
 		
 	}
