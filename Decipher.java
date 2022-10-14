@@ -3,6 +3,11 @@
 // Last modified: 10/14/2022
 // Decrypts a given file
 
+/*
+To select on option on the initial screen, click the option's button then click ok
+The frame formatting is bad so sometimes it might be better to look at the file to find the result
+*/
+
 //Util imports
 import java.util.Scanner;
 
@@ -23,7 +28,6 @@ import javax.swing.BoxLayout;
 //Awt imports
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Dimension;
 
 public class Decipher{
 	
