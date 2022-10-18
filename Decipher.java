@@ -1,12 +1,7 @@
 // Author: Nikolas Leslie
 // Date created: 10/13/2022
-// Last modified: 10/14/2022
+// Last modified: 10/18/2022
 // Decrypts a given file
-
-/*
-To select on option on the initial screen, click the option's button then click ok
-The frame formatting is bad so sometimes it might be better to look at the file to find the result
-*/
 
 //Util imports
 import java.util.Scanner;
@@ -15,19 +10,6 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-
-//Swing imports
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-
-//Awt imports
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Decipher{
 	
@@ -79,8 +61,7 @@ public class Decipher{
 			error = error.append(encryptedFile);
 			error = error.append(" was not found. Please check to see if the "+
 								 "file is correct.");
-			JOptionPane.showMessageDialog(null, error, "Error", 
-										  JOptionPane.ERROR_MESSAGE);
+			System.out.println(error);
 			return 0;
 		}
 		
@@ -99,8 +80,7 @@ public class Decipher{
 			error = error.append(plainTextFile);
 			error = error.append(" was not found. Please check to see "+
 								 "if the file is correct.");
-			JOptionPane.showMessageDialog(null, error, "Error", 
-										  JOptionPane.ERROR_MESSAGE);
+			System.out.println(error);
 			return 0;
 		}
 		
@@ -108,8 +88,7 @@ public class Decipher{
 		message = message.append(plainTextFile);
 		
 		fileWriter.println(fileMessage);
-		JOptionPane.showMessageDialog(null, message, "Decrypt", 
-									  JOptionPane.INFORMATION_MESSAGE);
+		System.out.println(message);
 		
 		fileWriter.close();
 		return 1;
@@ -137,8 +116,7 @@ public class Decipher{
 			error = error.append(inputFile);
 			error = error.append(" was not found. Please check to see if "+
 								 "the file is correct.");
-			JOptionPane.showMessageDialog(null, error, "Error", 
-										  JOptionPane.ERROR_MESSAGE);
+			System.out.println(error);
 			return 0;
 		}
 		
@@ -165,8 +143,7 @@ public class Decipher{
 			error = error.append(outputFile);
 			error = error.append(" was not found. Please check to see"+
 								 " if the file is correct.");
-			JOptionPane.showMessageDialog(null, error, "Error", 
-										  JOptionPane.ERROR_MESSAGE);
+			System.out.println(error);
 			return 0;
 		}
 		
@@ -175,8 +152,7 @@ public class Decipher{
 		encryptedMessage = encryptedMessage.append(outputFile);
 		
 		fileWriter.println(encryptedFile);
-		JOptionPane.showMessageDialog(null, encryptedMessage, "Encrypt", 
-									  JOptionPane.INFORMATION_MESSAGE);
+		System.out.println(encryptedMessage);
 		
 		fileWriter.close();
 		return 1;
@@ -201,8 +177,7 @@ public class Decipher{
 			error = error.append(file);
 			error = error.append(" was not found. Please check to see "+
 								 "if the file is correct.");
-			JOptionPane.showMessageDialog(null, error, "Error", 
-										  JOptionPane.ERROR_MESSAGE);
+			System.out.println(error);
 			return 0;
 		}
 		
@@ -211,82 +186,32 @@ public class Decipher{
 			content = content.append(line);
 		}
 		
-		JOptionPane.showMessageDialog(null, content, "View", 
-									  JOptionPane.INFORMATION_MESSAGE);
+		System.out.println(content);
 		return 1;
 	}
 	
 	public static void main(String[] args){
 		
-		String choice = null;
-		JLabel choiceLabel = new JLabel("h");
-		String inputFile = "";
-		String outputFile = "";
-		JTextField outputFileField = new JTextField(DEFAULT_ENCRYPTED_FILE);
-		JTextField inputFileField = new JTextField(DEFAULT_PLAINTEXT_FILE);
-		JTextField viewFileField = new JTextField();
-		JButton decryptButton = new JButton("Decrypt a file");
-		decryptButton.addActionListener(new ActionListener()
-		{public void actionPerformed(ActionEvent e){choiceLabel.setText("d");}});
-		JButton encryptButton = new JButton("Encrypt a file");
-		encryptButton.addActionListener(new ActionListener()
-		{public void actionPerformed(ActionEvent e){choiceLabel.setText("e");}});
-		JButton viewButton = new JButton("View a file");
-		viewButton.addActionListener(new ActionListener()
-		{public void actionPerformed(ActionEvent e){choiceLabel.setText("v");}});
-		JButton changeButton = new JButton("Change files");
-		changeButton.addActionListener(new ActionListener()
-		{public void actionPerformed(ActionEvent e){choiceLabel.setText("c");}});
-		
-		//Set up main panel
-		JPanel homePanel = new JPanel();
-		homePanel.setLayout(new BoxLayout(homePanel, BoxLayout.PAGE_AXIS));
-		homePanel.add(new JLabel("What would you like to do?"));
-		homePanel.add(Box.createVerticalStrut(15));
-		homePanel.add(decryptButton);
-		homePanel.add(Box.createVerticalStrut(15));
-		homePanel.add(encryptButton);
-		homePanel.add(Box.createVerticalStrut(15));
-		homePanel.add(viewButton);
-		homePanel.add(Box.createVerticalStrut(15));
-		homePanel.add(changeButton);
-		homePanel.add(Box.createVerticalStrut(15));
-		
-		//Set up panel for view function
-		JPanel viewPanel = new JPanel();
-		viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.PAGE_AXIS));
-		viewPanel.add(new JLabel("What file would you like to view?"));
-		viewPanel.add(Box.createVerticalStrut(15));
-		viewPanel.add(viewFileField);
-		
-		//Set up panel for change file function
-		JPanel changePanel = new JPanel();
-		changePanel.setLayout(new BoxLayout(changePanel, BoxLayout.PAGE_AXIS));
-		changePanel.add(new JLabel("Enter the new files:"));
-		changePanel.add(Box.createVerticalStrut(15));
-		changePanel.add(new JLabel("Input file:"));
-		changePanel.add(inputFileField);
-		changePanel.add(Box.createVerticalStrut(15));
-		changePanel.add(new JLabel("Output file:"));
-		changePanel.add(outputFileField);
+		Scanner stdin = new Scanner(System.in);
 		
 		while (true){
-			//Get input
-			try{
-				int test1 = JOptionPane.showConfirmDialog(null, homePanel, 
-								"Decipher", JOptionPane.OK_CANCEL_OPTION,
-										  JOptionPane.QUESTION_MESSAGE);
-				if (test1 != JOptionPane.OK_OPTION){
-					System.exit(0);
-				}
-			}catch(Exception e){
-				System.exit(0);
-			}
-			choice = choiceLabel.getText();
 			
+			//Get input
+
+			System.out.println("What would you like to do?");
+			System.out.println("\n");
+			System.out.println("\tA) Decrypt a file");
+			System.out.println("\tB) Encrypt a file");
+			System.out.println("\tC) View a file");
+			System.out.println("\tD) Switch the files");
+			System.out.println("\tE) Quit");
+			System.out.println("\n");
+			
+			String choice = stdin.nextLine();
+
 			//Do something depending on input
-			switch(choice){
-				case "d":
+			switch(choice.toUpperCase()){
+				case "D": case "A": case "DECRYPT": case "DECRYPT A FILE":
 					//Test if default values need to be used
 					if (inputFile.equals("")){
 						if (outputFile.equals("")){
@@ -303,7 +228,7 @@ public class Decipher{
 						}
 					}
 					break;
-				case "e":
+				case "E": case "B": case "ENCRYPT": case "ENCRYPT A FILE":
 					//Test if default values need to be used
 					if (inputFile.equals("")){
 						if (outputFile.equals("")){
@@ -320,59 +245,36 @@ public class Decipher{
 						}
 					}
 					break;
-				case "v":
-					try{
-						int test3 = JOptionPane.showConfirmDialog(null, viewPanel, 
-												"View", 
-												JOptionPane.OK_CANCEL_OPTION,
-												JOptionPane.QUESTION_MESSAGE);
-						if (test3 != JOptionPane.OK_OPTION){
-							System.exit(0);
-						}
-					}catch(Exception e){
-						System.exit(0);
-					}
-					view(viewFileField.getText());
+				case "V": case "C": case "VIEW": case "VIEW A FILE":
+					System.out.println("What file would you like to view?\n");
+					String fileToView = stdin.nextLine();
+					view(fileToView);
 					break;
-				case "c":
-					try{
-						int test2 = JOptionPane.showConfirmDialog(null, 
-									changePanel, "Change files", 
-									JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-						if (test2 != JOptionPane.OK_OPTION){
-							System.exit(0);
-						}
-					}catch(Exception e){
-						System.exit(0);
-					}
+				case "S": case "D": case "SWITCH": case "SWITCH THE FILES":
+					System.out.println("What is the new input file?\n");
+					String newInput = stdin.nextLine();
+					System.out.println("\nWhat is the new output file?\n");
+					String newOutput = stdin.nextLine();
 					//Change files to new files
-					inputFile = inputFileField.getText();
-					outputFile = outputFileField.getText();
+					inputFile = newInput;
+					outputFile = newOutput;
 					StringBuilder message = new StringBuilder("The input f"+
 											"ile has been changed to: ");
 					message = message.append(inputFile);
 					message = message.append("\nThe output fil"+
 										"e has been changed to: ");
 					message = message.append(outputFile);
-					try{
-						JOptionPane.showMessageDialog(null, message, 
-							"Change files", JOptionPane.INFORMATION_MESSAGE);
-					}catch(Exception e){
-						System.exit(0);
-					}
+
+					System.out.println(message);
+
+					break;
+				case "Q": case "E": case "QUIT":
+					System.exit(0);
 					break;
 				default:
-					try{
-						JOptionPane.showMessageDialog(null, 
-						"Something went wrong", "Error", 
-						JOptionPane.WARNING_MESSAGE);
-					}catch(Exception e){
-						System.exit(0);
-					}
+					System.out.println("Command could not be found. Please try again");
 					break;
 			}
-			choice = "h";
-			choiceLabel.setText("h");
 		}
 		
 	}
