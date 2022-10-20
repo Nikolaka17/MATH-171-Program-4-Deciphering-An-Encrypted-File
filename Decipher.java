@@ -1,6 +1,6 @@
 // Author: Nikolas Leslie
 // Date created: 10/13/2022
-// Last modified: 10/18/2022
+// Last modified: 10/20/2022
 // Decrypts a given file
 
 //Util imports
@@ -196,9 +196,12 @@ public class Decipher{
 		
 		while (true){
 			
+			String inputFile = "";
+			String outputFile = "";
+			
 			//Get input
 
-			System.out.println("What would you like to do?");
+			System.out.println("\n\nWhat would you like to do?");
 			System.out.println("\n");
 			System.out.println("\tA) Decrypt a file");
 			System.out.println("\tB) Encrypt a file");
@@ -211,7 +214,7 @@ public class Decipher{
 
 			//Do something depending on input
 			switch(choice.toUpperCase()){
-				case "D": case "A": case "DECRYPT": case "DECRYPT A FILE":
+				case "A": case "DECRYPT": case "DECRYPT A FILE":
 					//Test if default values need to be used
 					if (inputFile.equals("")){
 						if (outputFile.equals("")){
@@ -228,7 +231,7 @@ public class Decipher{
 						}
 					}
 					break;
-				case "E": case "B": case "ENCRYPT": case "ENCRYPT A FILE":
+				case "B": case "ENCRYPT": case "ENCRYPT A FILE":
 					//Test if default values need to be used
 					if (inputFile.equals("")){
 						if (outputFile.equals("")){
